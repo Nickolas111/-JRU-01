@@ -1,0 +1,35 @@
+import java.io.*;
+import java.util.*;
+
+public class KeysGenerator {
+    private static final int NUM_KEYS = 10;  // Кількість випадкових ключів
+
+    public static void main(String[] args) {
+        List<Integer> keys = generateRandomKeys(NUM_KEYS);
+        saveKeysToFile(keys, "keys.txt");
+        System.out.println("Список випадкових ключів було збережено в файл keys.txt.");
+    }
+
+    private static List<Integer> generateRandomKeys(int numKeys) {
+        List<Integer> keys = new ArrayList<>();
+
+        Random random = new Random();
+        for (int i = 0; i < numKeys; i++) {
+            int key = random.nextInt(26) + 1;  // Випадкове ціле число від 1 до 26
+            keys.add(key);
+        }
+
+        return keys;
+    }
+
+    private static void saveKeysToFile(List<Integer> keys, String filePath) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
+            for (int key : keys) {
+                writer.println(key);
+            }
+        } catch (IOException e) {
+            System.out.println("Помилка при збереженні файлу.");
+            e.printStackTrace();
+        }
+    }
+}
