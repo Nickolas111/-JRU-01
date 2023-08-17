@@ -112,4 +112,3 @@ public class CaesarCipher {
         return text.toString();
     }
 }
-
