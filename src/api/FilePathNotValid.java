@@ -5,4 +5,3 @@ public class FilePathNotValid extends RuntimeException {
         super(message);
     }
 }
-
