@@ -4,9 +4,8 @@ import java.io.*;
 import java.util.*;
 
 public class CaesarCipher {
-    private static final String ALPHABET = "абвгдежзийклмнопрстуфхцчшщъыьэюя.,\"\":-!? ";
 
-    public static void main(String[] args) {
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Оберіть режим:");
         System.out.println("1. Шифрування");
@@ -29,7 +28,7 @@ public class CaesarCipher {
         }
     }
 
-    private static void encrypt() {
+    private void encrypt() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введіть текст для шифрування:");
         String plaintext = scanner.nextLine();
@@ -39,8 +38,8 @@ public class CaesarCipher {
         String ciphertext = "";
         for (int i = 0; i < plaintext.length(); i++) {
             char ch = plaintext.charAt(i);
-            int index = (ALPHABET.indexOf(ch) + key) % ALPHABET.length();
-            ciphertext += ALPHABET.charAt(index);
+            int index = (Constants.ALPHABET.indexOf(ch) + key) % Constants.ALPHABET.length();
+            ciphertext += Constants.ALPHABET.charAt(index);
         }
 
         saveToFile(ciphertext, "encrypted.txt");
@@ -58,8 +57,9 @@ public class CaesarCipher {
         String plaintext = "";
         for (int i = 0; i < ciphertext.length(); i++) {
             char ch = ciphertext.charAt(i);
-            int index = (ALPHABET.indexOf(ch) - key + ALPHABET.length()) % ALPHABET.length();
-            plaintext += ALPHABET.charAt(index);
+            int index = (Constants.ALPHABET.indexOf(ch) - key + Constants.ALPHABET.length()) % Constants.ALPHABET.length();
+            plaintext
+                    += Constants.ALPHABET.charAt(index);
         }
 
         System.out.println("Розшифрований текст:");
@@ -74,11 +74,11 @@ public class CaesarCipher {
         String ciphertext = readFromFile(filePath);
         String decryptedText = "";
 
-        for (int key = 1; key < ALPHABET.length(); key++) {
+        for (int key = 1; key < Constants.ALPHABET.length(); key++) {
             for (int i = 0; i < ciphertext.length(); i++) {
                 char ch = ciphertext.charAt(i);
-                int index = (ALPHABET.indexOf(ch) - key + ALPHABET.length()) % ALPHABET.length();
-                decryptedText += ALPHABET.charAt(index);
+                int index = (Constants.ALPHABET.indexOf(ch) - key + Constants.ALPHABET.length()) % Constants.ALPHABET.length();
+                decryptedText += Constants.ALPHABET.charAt(index);
             }
 
             System.out.println("Ключ " + key + ":");
