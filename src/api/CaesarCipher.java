@@ -58,7 +58,7 @@ public class CaesarCipher {
         for (int i = 0; i < ciphertext.length(); i++) {
             char ch = ciphertext.charAt(i);
             int index = (Constants.ALPHABET.indexOf(ch) - key + Constants.ALPHABET.length()) % Constants.ALPHABET.length();
-            plaintext += Constants.ALPHABET.charAt(index);
+
         }
 
         System.out.println("Розшифрований текст:");
