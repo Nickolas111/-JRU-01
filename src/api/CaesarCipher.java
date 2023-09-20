@@ -46,7 +46,7 @@ public class CaesarCipher {
         System.out.println("Текст було успішно зашифровано і збережено в файл encrypted.txt.");
     }
 
-    private static void decrypt() {
+    private void decrypt() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введіть шлях до файлу з зашифрованим текстом:");
         String filePath = scanner.nextLine();
@@ -58,15 +58,14 @@ public class CaesarCipher {
         for (int i = 0; i < ciphertext.length(); i++) {
             char ch = ciphertext.charAt(i);
             int index = (Constants.ALPHABET.indexOf(ch) - key + Constants.ALPHABET.length()) % Constants.ALPHABET.length();
-            plaintext
-                    += Constants.ALPHABET.charAt(index);
+
         }
 
         System.out.println("Розшифрований текст:");
         System.out.println(plaintext);
     }
 
-    private static void bruteForce() {
+    private void bruteForce() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введіть шлях до файлу з зашифрованим текстом:");
         String filePath = scanner.nextLine();
@@ -89,7 +88,7 @@ public class CaesarCipher {
         }
     }
 
-    private static void saveToFile(String text, String filePath) {
+    private void saveToFile(String text, String filePath) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filePath))) {
             writer.println(text);
         } catch (IOException e) {
@@ -98,7 +97,7 @@ public class CaesarCipher {
         }
     }
 
-    private static String readFromFile(String filePath) {
+    private String readFromFile(String filePath) {
         StringBuilder text = new StringBuilder();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -114,3 +113,4 @@ public class CaesarCipher {
         return text.toString();
     }
 }
+
